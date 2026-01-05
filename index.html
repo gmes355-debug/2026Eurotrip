@@ -139,69 +139,207 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
         const itinerary = {
-            1: { date: "02/17", day: "二", city: "巴黎", highlights: "23:00 台北 TPE 出發。", booking: "長榮航空 BR087", events: [
-                { time: "23:00", desc: "台北TPE → 巴黎CDG", transport: "長榮航空BR087／T2／57K、57J", info: "約15小時", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            2: { date: "02/18", day: "三", city: "巴黎", highlights: "鐵塔散步＋塞納河遊船。調時差、寬鬆行程。", booking: "晚: Aldehyde (米其林一星)\n住宿：Citadines Apart'hotel Saint-Germain-des-Prés", hotelMap: "https://maps.app.goo.gl/hotel1", events: [
-                { time: "07:45", desc: "抵達CDG T1航廈", info: "辦理EES、過海關、領行李", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "09:00", desc: "機場接送到飯店", transport: "計程車 (約45-70分鐘)", info: "辦門號，買Navigo Pass", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "10:30", desc: "抵達飯店/寄行李", transport: "步行", info: "備註：需付城市稅 €84.50", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "12:00", desc: "凱旋門拍照", transport: "BigBus【Notre-Dame(3) → Champs-Elysées(5)】", info: "凱旋門有免費廁所", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "17:00", desc: "[ Bateaux Parisiens ] 遊船", transport: "船上 (約60分鐘)", info: "日落時刻建議提前佔位", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "19:30", desc: "Aldehyde 用餐", info: "米其林一星", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            3: { date: "02/19", day: "四", city: "巴黎", highlights: "聖母院、奧賽美術館。", booking: "午:Le Vieux Bistrot / 晚:Les Antiquaires", hotelMap: "https://maps.app.goo.gl/hotel1", events: [
-                { time: "07:30", desc: "前往 [ 巴黎聖母院 ]", transport: "步行 (途經 Pont Saint-Michel)", info: "Cite島有很多廁所", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "09:00", desc: "塔樓登頂", info: "爬樓梯。怪獸走廊參觀限5分鐘。", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "18:00", desc: "[ 奧賽美術館 ]", info: "晚場第一批進入。21:30 商店關閉。", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            4: { date: "02/20", day: "五", city: "巴黎", highlights: "羅浮宮、歌劇院、蒙帕納斯夜景。", booking: "晚: Le suffren (淨漢選)", hotelMap: "https://maps.app.goo.gl/hotel1", events: [
-                { time: "09:00", desc: "[ 羅浮宮 ] 參觀", info: "二樓領取語音導覽機", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "15:20", desc: "[ 巴黎歌劇院 ]", transport: "M7 【Palais Royal → Opéra】", info: "參觀華麗階梯與劇場", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "20:00", desc: "Le suffren 用餐", transport: "M6 【Montparnasse → La Motte-Picquet】", info: "淨漢選：蝸牛、牛排、鴨腿", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            5: { date: "02/21", day: "六", city: "巴黎", highlights: "凡爾賽宮、蒙馬特。", booking: "午: 凡爾賽內 / 晚: Le Bouclard", hotelMap: "https://maps.app.goo.gl/hotel1", events: [
-                { time: "08:30", desc: "[ 凡爾賽宮 ]", transport: "RER C【Saint-Michel → Versailles】", info: "直衝 [ 鏡廳 ]。PMP含主宮殿+特里亞農。", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "16:30", desc: "蒙馬特巡禮", transport: "M12 【Solférino → Abbesses】", info: "[ 愛牆 ]、[ 聖心堂 ]、[ 小丘廣場 ]", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            6: { date: "02/22", day: "日", city: "巴黎", highlights: "跳蚤市場、瘋馬秀。", booking: "19:40 瘋馬秀", hotelMap: "https://maps.app.goo.gl/hotel1", events: [
-                { time: "08:00", desc: "跳蚤市場", transport: "公車 58【Pont Neuf → Porte Didot】", info: "[ Marché aux puces de la Porte de Vanves ]", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "19:40", desc: "瘋馬秀表演", info: "提早半小時抵達", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            7: { date: "02/23", day: "一", city: "巴塞隆納", highlights: "高鐵前往西班牙。夕陽纜車。", booking: "高鐵 TGV 07:42 / 晚:蘭州牛肉麵\n住宿：Aparthotel Atenea Calabria", hotelMap: "https://maps.app.goo.gl/hotel2", events: [
-                { time: "07:42", desc: "TGV ➔ 巴塞隆納", transport: "TGV INOUI／N9713 / 車廂 11 / 座位 140、143", info: "里昂車站出發，行李照X光", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "17:00", desc: "蒙特惠奇纜車", transport: "公車 150 轉纜車", info: "[ Montjuïc Castle ] 夕陽", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            8: { date: "02/24", day: "二", city: "巴塞隆納", highlights: "歌德區與米拉之家。", booking: "17:00 米拉之家", hotelMap: "https://maps.app.goo.gl/hotel2", events: [
-                { time: "13:30", desc: "Colom 用餐", info: "海鮮燉飯、Sangria", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "17:00", desc: "[ 米拉之家 ]", transport: "L3【Liceu → Diagonal】", info: "屋頂看巴塞夜景", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            9: { date: "02/25", day: "三", city: "巴塞隆納", highlights: "聖家堂、奎爾公園。", booking: "11:00 聖家堂 / 19:30 四隻貓", hotelMap: "https://maps.app.goo.gl/hotel2", events: [
-                { time: "11:00", desc: "[ 聖家堂 ] 內部與登頂", info: "不可遲到。有中文導覽。", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "17:00", desc: "[ 奎爾公園 ]", transport: "Uber", info: "看大蜥蜴與主露臺", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            10: { date: "02/26", day: "四", city: "巴塞隆納", highlights: "達利劇場與魔幻噴泉。", booking: "08:14 費格拉斯火車", hotelMap: "https://maps.app.goo.gl/hotel2", events: [
-                { time: "08:14", desc: "Avant ➔ Figueres", transport: "火車 / 車廂 02 / 座位 03A、04A", info: "達利劇場博物館", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "20:00", desc: "魔幻噴泉", info: "在 Arena 觀景台觀看", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            11: { date: "02/27", day: "五", city: "馬德里", highlights: "前進馬德里。普拉多博物館。", booking: "08:25 高鐵 / 晚: La Sanabresa\n住宿：Catalonia Atocha", hotelMap: "https://maps.app.goo.gl/hotel3", events: [
-                { time: "08:25", desc: "AVE 03080 ➔ 馬德里", transport: "高鐵 / 車廂 001 / 座位 01B、01C", info: "抵達 Atocha 站", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "14:30", desc: "[ 普拉多博物館 ]", info: "必看：Las Meninas", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            12: { date: "02/28", day: "六", city: "馬德里", highlights: "馬德里皇宮與日落神廟。", booking: "10:00 馬德里皇宮", hotelMap: "https://maps.app.goo.gl/hotel3", events: [
-                { time: "10:00", desc: "[ 馬德里皇宮 ]", transport: "L1+L5【Atocha → Ópera】", info: "衛兵交接 13:00", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "18:00", desc: "德波神廟日落", info: "埃及神廟觀景點", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            13: { date: "03/01", day: "日", city: "維也納", highlights: "馬德里市區採買，飛往維也納。", booking: "19:55 班機 (IB797)\n住宿：NH Wien Belvedere", hotelMap: "https://maps.app.goo.gl/hotel4", events: [
-                { time: "19:55", desc: "MAD ➔ VIE (Iberia)", transport: "飛機 / 座位 15E、15F", info: "抵達維也納約 23:00", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            14: { date: "03/02", day: "一", city: "維也納", highlights: "快閃維也納與返台。", booking: "08:00 Café Central", hotelMap: "https://maps.app.goo.gl/hotel4", events: [
-                { time: "08:00", desc: "[ Café Central ]", info: "必點：皇帝煎餅", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" },
-                { time: "12:05", desc: "VIE ➔ TPE (長榮)", transport: "長榮航空BR066／T3／55K、55J", info: "維也納機場 T3 辦理退稅", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]},
-            15: { date: "03/03", day: "二", city: "台北", highlights: "抵達台灣。", events: [
-                { time: "06:40", desc: "桃園機場 T2", info: "平安回家。", map: "https://maps.app.goo.gl/xxx", pdf: "https://link" }
-            ]}
+    1: { 
+        date: "02/17", day: "二", city: "巴黎", 
+        highlights: "23:00 台北 TPE 出發，開啟歐洲之旅。", 
+        booking: "長榮航空 BR087 (TPE-CDG)", 
+        hotelMap: "", 
+        events: [
+            { time: "23:00", desc: "台北TPE → 巴黎CDG", transport: "長榮航空BR087／T2／座位 57K、57J", info: "飛行時間約 15 小時，請準備好頸枕與長途飛行用品。", map: "https://maps.app.goo.gl/TPE", pdf: "https://link" }
+        ]
+    },
+    2: { 
+        date: "02/18", day: "三", city: "巴黎", 
+        highlights: "鐵塔區域完整散步、塞納河遊船、米其林晚宴。", 
+        booking: "晚餐：Aldehyde (米其林一星)\n住宿：Citadines Apart'hotel Saint-Germain-des-Prés (需付城市稅 €84.50)", 
+        hotelMap: "https://maps.app.goo.gl/CitadinesParis", 
+        events: [
+            { time: "07:45", desc: "抵達 CDG T1 航廈", info: "辦理 EES 登錄、過海關、領行李、整理儀容。", map: "https://maps.app.goo.gl/CDGT1", pdf: "https://link" },
+            { time: "09:00", desc: "機場接送至飯店", transport: "計程車 (約 45-70 分鐘)", info: "抵達飯店寄放行李。辦理門號、購買 Navigo Pass (一週票)。", map: "https://maps.app.goo.gl/Hotel", pdf: "https://link" },
+            { time: "10:30", desc: "飯店周邊巡禮", info: "景點：藝術橋 (Pont des Arts)、新橋 (Pont Neuf)、Square du Vert-Galant、莎士比亞書店。", map: "https://maps.app.goo.gl/StGermain", pdf: "https://link" },
+            { time: "12:00", desc: "凱旋門拍照", transport: "BigBus：Notre-Dame(3) → Champs-Elysées(5) (約 30 分鐘)", info: "凱旋門有免費廁所可利用。", map: "https://maps.app.goo.gl/Arc", pdf: "https://link" },
+            { time: "13:00", desc: "夏樂宮拍鐵塔全景", transport: "BigBus：Champs-Elysées(5) → Trocadéro(7) (約 30 分鐘)", info: "此處為拍攝艾菲爾鐵塔最佳角度。", map: "https://maps.app.goo.gl/Trocadero", pdf: "https://link" },
+            { time: "14:30", desc: "鐵塔區域深度散步 (CityWalk)", info: "路徑：Ave. de Camons → 紐約大街 → 德比利行人橋 → 大學路 → 耶拿橋 → 旋轉木馬 → 比爾哈凱姆橋 → 戰神廣場。", map: "https://maps.app.goo.gl/TowerWalk", pdf: "https://link" },
+            { time: "17:00", desc: "Bateaux Parisiens 日落遊船", transport: "船上 (約 60 分鐘)", info: "建議提早 20 分鐘去佔戶外景觀位置。", map: "https://maps.app.goo.gl/Cruise", pdf: "https://link" },
+            { time: "19:30", desc: "Aldehyde 米其林晚宴", info: "請穿著正式休閒裝 (Smart Casual)。", map: "https://maps.app.goo.gl/Aldehyde", pdf: "https://link" },
+            { time: "22:00", desc: "回飯店/錄影檢查", info: "初次進房請錄影檢查設施，並至附近超市買零食宵夜。", map: "https://maps.app.goo.gl/Hotel", pdf: "https://link" }
+        ]
+    },
+    3: { 
+        date: "02/19", day: "四", city: "巴黎", 
+        highlights: "聖母院登頂、左岸文藝散步、奧賽之夜。", 
+        booking: "午餐：Le Vieux Bistrot / 晚餐：Les Antiquaires", 
+        hotelMap: "https://maps.app.goo.gl/CitadinesParis", 
+        events: [
+            { time: "07:30", desc: "前往巴黎聖母院", transport: "步行 (經 Pont Saint-Michel)", info: "Cite 島內有很多公共廁所。", map: "https://maps.app.goo.gl/NotreDame", pdf: "https://link" },
+            { time: "09:00", desc: "聖母院塔樓登頂", info: "需爬長樓梯，怪獸走廊參觀限時 5 分鐘。", map: "https://maps.app.goo.gl/Tower", pdf: "https://link" },
+            { time: "10:30", desc: "聖徒禮拜堂 & 古監獄", info: "使用 PMP 快速通道 (ursavec billet) 免排隊。", map: "https://maps.app.goo.gl/Chapelle", pdf: "https://link" },
+            { time: "13:30", desc: "Le Vieux Bistrot 用餐", transport: "步行 (約 30-45 分鐘)", info: "必點：紅酒燉牛肉、烤起司、招牌火鍋。", map: "https://maps.app.goo.gl/Bistrot", pdf: "https://link" },
+            { time: "15:30", desc: "聖日耳曼德佩區散步", info: "路徑：盧森堡公園 → 聖敘爾比斯教堂 → 花神咖啡館 & 雙叟咖啡館 → 河岸舊書攤。", map: "https://maps.app.goo.gl/LeftBank", pdf: "https://link" },
+            { time: "18:00", desc: "奧賽美術館 (週四延長開放)", info: "21:30 商店與廁所關閉，建議先逛 5 樓大鐘區。", map: "https://maps.app.goo.gl/Orsay", pdf: "https://link" },
+            { time: "21:45", desc: "Les Antiquaires 晚餐", transport: "步行回飯店 (約 15 分鐘)", info: "必點：油封鴨腿、洋蔥湯、法國蝸牛、青蛙腿。", map: "https://maps.app.goo.gl/Antiquaires", pdf: "https://link" }
+        ]
+    },
+    4: { 
+        date: "02/20", day: "五", city: "巴黎", 
+        highlights: "羅浮宮藝術巡禮、巴黎歌劇院、淨漢選餐廳。", 
+        booking: "晚餐：Le suffren (淨漢選餐廳)", 
+        hotelMap: "https://maps.app.goo.gl/CitadinesParis", 
+        events: [
+            { time: "08:00", desc: "前往羅浮宮", transport: "步行 (經 Pont du Carrousel 到金字塔入口)", info: "小心入口處的扒手與騙子。", map: "https://maps.app.goo.gl/Louvre", pdf: "https://link" },
+            { time: "09:00", desc: "羅浮宮參觀", info: "先去二樓領取 Nintendo 語音導覽。必看三寶：蒙娜麗莎、勝利女神、維納斯。", map: "https://maps.app.goo.gl/MonaLisa", pdf: "https://link" },
+            { time: "15:20", desc: "巴黎歌劇院 (Palais Garnier)", transport: "地鐵 M7：Palais Royal → Opéra (約 10 分鐘)", info: "參觀華麗階梯與劇場，確認是否有演出不開放區域。", map: "https://maps.app.goo.gl/Opera", pdf: "https://link" },
+            { time: "18:00", desc: "拉法葉百貨觀景台", info: "百貨頂樓免費觀看巴黎市景。", map: "https://maps.app.goo.gl/Lafayette", pdf: "https://link" },
+            { time: "19:00", desc: "蒙帕納斯大廈觀景", transport: "地鐵 M12：Saint-Lazare → Montparnasse-Bienvenüe (約 30 分鐘)", info: "看艾菲爾鐵塔整點閃燈最佳處。", map: "https://maps.app.goo.gl/Montparnasse", pdf: "https://link" },
+            { time: "20:00", desc: "Le suffren 用餐", transport: "地鐵 M6：Montparnasse → La Motte-Picquet (約 15 分鐘)", info: "淨漢選：經典法國料理、蝸牛、牛排、鴨腿、洋蔥湯。", map: "https://maps.app.goo.gl/Suffren", pdf: "https://link" },
+            { time: "21:30", desc: "回飯店", transport: "地鐵 M10：La Motte-Picquet → Odéon (約 20 分鐘)", info: "休息並準備明日凡爾賽行程。", map: "https://maps.app.goo.gl/Hotel", pdf: "https://link" }
+        ]
+    },
+    5: { 
+        date: "02/21", day: "六", city: "巴黎", 
+        highlights: "凡爾賽宮奢華巡禮、蒙馬特聖心堂夕陽。", 
+        booking: "晚餐：Le Bouclard", 
+        hotelMap: "https://maps.app.goo.gl/CitadinesParis", 
+        events: [
+            { time: "07:30", desc: "前往凡爾賽宮", transport: "RER C：Saint-Michel → Versailles Château Rive Gauche (約 40 分鐘)", info: "出站步行 15-20 分鐘抵達正門。", map: "https://maps.app.goo.gl/VersaillesPath", pdf: "https://link" },
+            { time: "08:30", desc: "凡爾賽主宮殿", info: "直衝鏡廳 (Hall of Mirrors) 避開人潮，APP 有中文語音導覽。", map: "https://maps.app.goo.gl/Mirrors", pdf: "https://link" },
+            { time: "11:30", desc: "花園與特里亞農宮", info: "建議搭乘小火車 (€9/人)。路徑：主宮殿-大運河-特里亞農-主宮殿。", map: "https://maps.app.goo.gl/Garden", pdf: "https://link" },
+            { time: "15:30", desc: "前往蒙馬特", transport: "RER C 轉地鐵 M12：Solférino → Abbesses (約 55 分鐘)", info: "Abbesses 站有漂亮磁磚與電梯。", map: "https://maps.app.goo.gl/Montmartre", pdf: "https://link" },
+            { time: "16:30", desc: "蒙馬特巡禮", info: "景點：愛牆、聖心堂 (看夕陽)、小丘廣場、紅磨坊外觀。", map: "https://maps.app.goo.gl/SacreCoeur", pdf: "https://link" },
+            { time: "18:30", desc: "Le Bouclard 晚餐", info: "推薦：洋蔥湯、紅酒燉牛肉、法式小酒館氛圍。", map: "https://maps.app.goo.gl/Bouclard", pdf: "https://link" },
+            { time: "21:00", desc: "搭計程車/Uber 回飯店", info: "今日步行較多，建議搭車減輕負擔。", map: "https://maps.app.goo.gl/Hotel", pdf: "https://link" }
+        ]
+    },
+    6: { 
+        date: "02/22", day: "日", city: "巴黎", 
+        highlights: "在地市集、特色廊街、瘋馬秀表演。", 
+        booking: "19:40 瘋馬秀 (Le Crazy Horse)", 
+        hotelMap: "https://maps.app.goo.gl/CitadinesParis", 
+        events: [
+            { time: "07:30", desc: "凡夫跳蚤市場 (Porte de Vanves)", transport: "公車 58：Pont Neuf → Porte Didot (約 30 分鐘)", info: "僅週末開放。必看古董餐具、復古小物，建議備好現金。", map: "https://www.google.com/maps/search/Square+du+Vert-Galant6", pdf: "https://link" },
+            { time: "10:30", desc: "羅丹美術館", transport: "地鐵 M13：Porte de Vanves → Varenne (約 30 分鐘)", info: "必看：沈思者、地獄之門、花園雕塑。", map: "https://www.google.com/maps/search/Square+du+Vert-Galant7", pdf: "https://link" },
+            { time: "14:00", desc: "巴黎特色廊街 & 瑪黑區巡禮", info: "路徑：Passage Jouffroy → 全景廊街 → 薇薇安廊街 → 孚日廣場 → 雨果之家。", map: "https://www.google.com/maps/search/Square+du+Vert-Galant8", pdf: "https://link" },
+            { time: "16:30", desc: "凡登廣場 & 杜樂麗花園", info: "在杜樂麗花園長椅小憩。隨後移動至香榭麗舍區。", map: "https://www.google.com/maps/search/Square+du+Vert-Galant9", pdf: "https://link" },
+            { time: "19:40", desc: "Crazy Horse 瘋馬秀", info: "請提前 30 分鐘抵達。服裝請避免運動服、短褲與拖鞋。", map: "https://www.google.com/maps/search/Arc+de+Triomphe0", pdf: "https://link" },
+            { time: "22:00", desc: "回飯店準備搬家", info: "整理行李。重要：巴塞隆納出站時行李需照 X 光，瑞士刀等利器務必收妥。", map: "https://maps.app.goo.gl/Hotel", pdf: "https://link" }
+        ]
+    },
+    7: { 
+        date: "02/23", day: "一", city: "巴塞隆納", 
+        highlights: "跨國高鐵 TGV、蒙特惠奇夕陽、西班牙廣場。", 
+        booking: "高鐵：TGV INOUI N9713 / 晚餐：一品蘭州牛肉麵\n住宿：Aparthotel Atenea Calabria (需付城市稅 €44.00)", 
+        hotelMap: "https://www.google.com/maps/search/Arc+de+Triomphe1", 
+        events: [
+            { time: "06:30", desc: "前往巴黎里昂車站 (Gare de Lyon)", transport: "Uber (約 15-30 分鐘)", info: "火車出發前 20 分鐘才會公布月台資訊。", map: "https://www.google.com/maps/search/Arc+de+Triomphe2", pdf: "https://link" },
+            { time: "07:42", desc: "TGV ➔ 巴塞隆納", transport: "車次 N9713 / 車廂 11 / 座位 140、143 (上層)", info: "飛行約 6 小時 50 分鐘。餐車在 14 節車廂，可沿途欣賞南法海岸景色。", map: "https://www.google.com/maps/search/Arc+de+Triomphe3", pdf: "https://link" },
+            { time: "14:42", desc: "抵達 Barcelona Sants 車站", transport: "Uber (約 5-15 分鐘)", info: "至飯店 Check-in，錄影檢查房間物品。", map: "https://www.google.com/maps/search/Arc+de+Triomphe4", pdf: "https://link" },
+            { time: "16:00", desc: "蒙特惠奇山巡禮", transport: "公車 150：Fira Barcelona → Av Miramar (約 15 分鐘)", info: "途經米羅公園、女人與鳥雕塑。", map: "https://www.google.com/maps/search/Arc+de+Triomphe5", pdf: "https://link" },
+            { time: "17:00", desc: "蒙特惠奇纜車 (Telefèric)", info: "前往 Montjuïc Castle。必看俯瞰巴塞隆納港口與市區的全景夕陽。", map: "https://www.google.com/maps/search/Arc+de+Triomphe6", pdf: "https://link" },
+            { time: "19:00", desc: "西班牙廣場 & 魔幻噴泉", info: "從 Arena 購物中心觀景台觀看廣場全景。", map: "https://www.google.com/maps/search/Arc+de+Triomphe7", pdf: "https://link" },
+            { time: "20:00", desc: "自助洗衣 & 晚餐", info: "前往 Dash & Dry 洗衣。晚餐推薦：一品蘭州牛肉麵。", map: "https://www.google.com/maps/search/Arc+de+Triomphe8", pdf: "https://link" }
+        ]
+    },
+    8: { 
+        date: "02/24", day: "二", city: "巴塞隆納", 
+        highlights: "歌德區巷弄探險、米拉之家夕陽。", 
+        booking: "17:00 米拉之家 (Casa Milà)", 
+        hotelMap: "https://www.google.com/maps/search/Arc+de+Triomphe1", 
+        events: [
+            { time: "07:30", desc: "歌德區 CityWalk", info: "路徑：嘆息橋 (Pont del Bisbe) → 聖奧古斯丁廣場 → 風之影景點 → 海上聖母聖殿。", map: "https://www.google.com/maps/search/Arc+de+Triomphe9", pdf: "https://link" },
+            { time: "11:00", desc: "加泰隆尼亞音樂宮", info: "欣賞華麗的外觀裝飾。隨後前往蘭布拉大道。", map: "https://www.google.com/maps/search/Trocadéro0", pdf: "https://link" },
+            { time: "13:30", desc: "Colom 餐廳用餐", info: "必點：西班牙海鮮燉飯 (Paella)、墨魚麵、Sangria 調酒。", map: "https://www.google.com/maps/search/Trocadéro1", pdf: "https://link" },
+            { time: "15:00", desc: "蘭布拉大道 & 波蓋利亞市集", info: "逛聖若瑟市場。路經皇家廣場 (Plaça Reial) 看高第設計的路燈。", map: "https://www.google.com/maps/search/Trocadéro2", pdf: "https://link" },
+            { time: "17:00", desc: "米拉之家 (Casa Milà)", transport: "地鐵 L3：Liceu → Diagonal (約 15 分鐘)", info: "參觀外星騎士煙囪。隨後散步去看不遠處的巴特略之家外觀。", map: "https://www.google.com/maps/search/Trocadéro3", pdf: "https://link" },
+            { time: "20:00", desc: "Vinitus 用餐 (Tapas)", transport: "步行 (約 10 分鐘)", info: "超人氣排隊店。推薦：蟶子 (Navajas)、炸小魚、蜂蜜鱈魚。", map: "https://www.google.com/maps/search/Trocadéro4", pdf: "https://link" }
+        ]
+    },
+    9: { 
+        date: "02/25", day: "三", city: "巴塞隆納", 
+        highlights: "聖家堂登頂、奎爾公園糖果屋、四隻貓餐酒館。", 
+        booking: "11:00 聖家堂 / 19:30 四隻貓 (4 Gats)", 
+        hotelMap: "https://www.google.com/maps/search/Arc+de+Triomphe1", 
+        events: [
+            { time: "09:00", desc: "文森之家 (Casa Vicens) 外觀", info: "高第的第一件作品，外牆瓷磚極美。", map: "https://www.google.com/maps/search/Trocadéro5", pdf: "https://link" },
+            { time: "11:00", desc: "聖家堂 (Sagrada Família) 內部與登頂", transport: "地鐵 L3 轉 L2：Fontana → Sagrada Familia (約 25 分鐘)", info: "包含受難面或誕生面登頂。注意：10:30 需完成語音導覽機領取。", map: "https://www.google.com/maps/search/Trocadéro6", pdf: "https://link" },
+            { time: "13:30", desc: "聖家堂周邊午餐", info: "推薦：La Paradeta (秤重海鮮) 或 Five Guys 漢堡。", map: "https://www.google.com/maps/search/Trocadéro7", pdf: "https://link" },
+            { time: "17:00", desc: "奎爾公園 (Park Güell)", transport: "Uber (約 20 分鐘)", info: "必拍：大蜥蜴、百柱廳、糖果屋建築。主露台可俯瞰全城。", map: "https://www.google.com/maps/search/Trocadéro8", pdf: "https://link" },
+            { time: "19:30", desc: "4 Gats 用餐", transport: "地鐵 L3：Lesseps → Liceu", info: "畢卡索常去的百年咖啡館。推薦：烤羊排、酥皮海鮮湯。", map: "https://www.google.com/maps/search/Trocadéro9", pdf: "https://link" }
+        ]
+    },
+    10: { 
+        date: "02/26", day: "四", city: "巴塞隆納", 
+        highlights: "達利劇場博物館、聖十字聖保羅醫院。", 
+        booking: "08:14 費格拉斯火車班次", 
+        hotelMap: "https://www.google.com/maps/search/Arc+de+Triomphe1", 
+        events: [
+            { time: "08:14", desc: "Avant 高鐵 ➔ Figueres-Vilafant", transport: "車次 03083 / 車廂 02 / 座位 03A、04A", info: "車程約 58 分鐘。抵達後可轉接駁公車或步行 20 分鐘。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim0", pdf: "https://link" },
+            { time: "10:30", desc: "達利劇場博物館 (Dali Theatre-Museum)", info: "必看：梅維斯房間 (唇形沙發)、達利珠寶展、巨型雞蛋屋頂。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim1", pdf: "https://link" },
+            { time: "16:10", desc: "返回巴塞隆納市區", transport: "火車 (約 1 小時)", info: "若還有體力可去 [ 聖十字聖保羅醫院 ] 看馬賽克建築。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim2", pdf: "https://link" },
+            { time: "20:00", desc: "蘭布拉大道最後採買", info: "買伴手禮、逛超市補充能量。", map: "https://www.google.com/maps/search/Trocadéro2", pdf: "https://link" }
+        ]
+    },
+    11: { 
+        date: "02/27", day: "五", city: "馬德里", 
+        highlights: "西班牙高鐵 AVE、普拉多美術館、藝術之城。", 
+        booking: "高鐵：AVE 03080 / 晚餐：La Sanabresa\n住宿：Catalonia Atocha (需付城市稅 €37.00)", 
+        hotelMap: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim3", 
+        events: [
+            { time: "07:30", desc: "前往 Barcelona Sants 車站", transport: "Uber (約 10 分鐘)", info: "車站安檢嚴格，不可攜帶未收納好的刀具。建議提早抵達。", map: "https://www.google.com/maps/search/Arc+de+Triomphe4", pdf: "https://link" },
+            { time: "08:25", desc: "AVE ➔ 馬德里 Atocha 車站", transport: "車次 03080 / 車廂 001 / 座位 01B、01C", info: "車程約 2.5 小時。抵達馬德里 Atocha 站後，沿著「Salida」標示步行至飯店。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim4", pdf: "https://link" },
+            { time: "11:30", desc: "飯店寄放行李 & 午餐", transport: "步行", info: "午餐推薦：Los Montes de Galicia (精緻加利西亞菜)。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim5", pdf: "https://link" },
+            { time: "14:30", desc: "普拉多博物館 (Museo del Prado)", transport: "步行 (約 10-15 分鐘)", info: "世界三大博物館之一。必看：委拉斯蓋茲《侍女》、哥雅《黑色繪畫》。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim6", pdf: "https://link" },
+            { time: "18:00", desc: "Atocha 火車站室內溫室", info: "在古老火車站內的熱帶花園拍照，看烏龜池。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim4", pdf: "https://link" },
+            { time: "20:00", desc: "La Sanabresa 晚餐", info: "在地老店。推薦：炸小魚、烤牛排、自製布丁。氣氛溫馨。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim7", pdf: "https://link" }
+        ]
+    },
+    12: { 
+        date: "02/28", day: "六", city: "馬德里", 
+        highlights: "奢華皇宮、太陽門廣場、德波神廟日落。", 
+        booking: "10:00 馬德里皇宮 (Palacio Real)", 
+        hotelMap: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim3", 
+        events: [
+            { time: "10:00", desc: "馬德里皇宮參觀", transport: "地鐵 L1 轉 L5：Atocha → Ópera (約 20 分鐘)", info: "歐洲第三大皇宮。參觀主樓梯、王座廳、皇家兵器庫。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim8", pdf: "https://link" },
+            { time: "13:00", desc: "阿穆德納聖母主教座堂", info: "位於皇宮對面，天花板色彩絢麗，免費參觀 (建議捐獻)。", map: "https://www.google.com/maps/search/Pont+de+Bir-Hakeim9", pdf: "https://link" },
+            { time: "14:30", desc: "聖米格爾市集午餐", transport: "步行 (約 5 分鐘)", info: "高檔玻璃市集。推薦：各式 Tapas、生蠔、伊比利火腿卷。", map: "https://www.google.com/maps/search/Bateaux+Parisiens0", pdf: "https://link" },
+            { time: "16:00", desc: "太陽門廣場 & 主廣場", info: "尋找「零公里」標誌與「熊與石楠樹」雕像。買明信片的好地方。", map: "https://www.google.com/maps/search/Bateaux+Parisiens1", pdf: "https://link" },
+            { time: "18:00", desc: "德波神廟 (Templo de Debod) 日落", transport: "步行或 Uber", info: "從埃及搬遷而來的神廟。這裡是看馬德里夕陽與遠眺皇宮夜景最美的地方。", map: "https://www.google.com/maps/search/Bateaux+Parisiens2", pdf: "https://link" },
+            { time: "20:30", desc: "Mesón de la Guitarra 晚餐", info: "地下酒窖風格。推薦：蒜炒蘑菇、烤香腸、Sangria。", map: "https://www.google.com/maps/search/Bateaux+Parisiens3", pdf: "https://link" }
+        ]
+    },
+    13: { 
+        date: "03/01", day: "日", city: "維也納", 
+        highlights: "麗池公園、最後採買、飛往維也納。", 
+        booking: "19:55 班機 (Iberia IB797)\n住宿：NH Wien Belvedere", 
+        hotelMap: "https://www.google.com/maps/search/Bateaux+Parisiens4", 
+        events: [
+            { time: "09:00", desc: "麗池公園 (El Retiro)", transport: "地鐵 L1：Atocha → Retiro (約 10 分鐘)", info: "散步至玻璃宮 (Palacio de Cristal)，拍水面倒影。", map: "https://www.google.com/maps/search/Bateaux+Parisiens5", pdf: "https://link" },
+            { time: "12:00", desc: "英國宮百貨 (El Corte Inglés) 採買", info: "購買西班牙燉飯包、橄欖油、護手霜等伴手禮。", map: "https://www.google.com/maps/search/Bateaux+Parisiens6", pdf: "https://link" },
+            { time: "14:00", desc: "Chocolatería San Ginés", info: "馬德里最著名的吉拿棒店。必點：Churros con Chocolate。", map: "https://www.google.com/maps/search/Bateaux+Parisiens7", pdf: "https://link" },
+            { time: "16:30", desc: "前往馬德里機場 T4", transport: "火車 C1：Atocha → Aeropuerto T4 (約 35 分鐘)", info: "Iberia 航空櫃檯位於 T4。準備登機手續。", map: "https://www.google.com/maps/search/Bateaux+Parisiens8", pdf: "https://link" },
+            { time: "19:55", desc: "MAD ➔ VIE (Iberia)", transport: "機位：15E、15F", info: "飛行約 3 小時。預計 23:00 抵達維也納，搭 Uber 前往飯店。", map: "https://www.google.com/maps/search/Bateaux+Parisiens9", pdf: "https://link" }
+        ]
+    },
+    14: { 
+        date: "03/02", day: "一", city: "維也納", 
+        highlights: "中央咖啡館、音樂之都快閃、返台飛行。", 
+        booking: "08:00 Café Central / 長榮航空 BR066 (VIE-TPE)", 
+        hotelMap: "https://www.google.com/maps/search/Bateaux+Parisiens4", 
+        events: [
+            { time: "08:00", desc: "中央咖啡館 (Café Central) 早餐", transport: "Uber (約 10 分鐘)", info: "全世界最美咖啡館之一。必點：Kaiserschmarrn (皇帝煎餅)。", map: "https://www.google.com/maps/search/Restaurant+Aldehyde+Paris0", pdf: "https://link" },
+            { time: "09:30", desc: "前往維也納機場 T3", transport: "方案 A：Uber 直達 (最快) / 方案 B：Wien Mitte 搭 CAT 快線", info: "長榮航空櫃檯在 T3。抵達後先辦理退稅手續 (Global Blue)。", map: "https://www.google.com/maps/search/Restaurant+Aldehyde+Paris1", pdf: "https://link" },
+            { time: "12:05", desc: "VIE ➔ TPE", transport: "長榮航空 BR066 / 座位 55K、55J", info: "在免稅店做最後採買 (莫札特巧克力、Manner 威化餅)。", map: "https://www.google.com/maps/search/Restaurant+Aldehyde+Paris2", pdf: "https://link" }
+        ]
+    },
+    15: { 
+        date: "03/03", day: "二", city: "台北", 
+        highlights: "平安抵達台灣。", 
+        booking: "長榮航空 BR066 抵達", 
+        hotelMap: "", 
+        events: [
+            { time: "06:40", desc: "抵達桃園機場 T2", info: "領取行李、通關。15 天歐洲之旅圓滿結束！", map: "https://www.google.com/maps/search/Restaurant+Aldehyde+Paris3", pdf: "https://link" }
+        ]
+    }
+};
         };
 
         window.onload = init;

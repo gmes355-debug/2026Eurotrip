@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EuroTrip 2026 - 終極完整版</title>
+    <title>EuroTrip 2026 - 15 Days Complete</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Noto Sans TC", sans-serif; background-color: #F2F2F7; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, "SF Pro Display", "Noto Sans TC", sans-serif; background-color: #F2F2F7; }
         .ios-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background-color: rgba(255, 255, 255, 0.85); }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .date-card.active { background-color: #007AFF; color: white; box-shadow: 0 4px 12px rgba(0,122,255,0.25); }
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="mb-4">
-                <span class="text-[10px] bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-black uppercase tracking-wider">Itinerary Overview</span>
+                <span class="text-[10px] bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-black tracking-wider uppercase">Itinerary Overview</span>
                 <h2 id="overview-title" class="text-xl font-black mt-2 text-gray-800">載入中...</h2>
             </div>
             <div class="space-y-3">
@@ -52,47 +52,67 @@
         const cityCoords = { "巴黎": {lat: 48.85, lon: 2.35}, "巴塞隆納": {lat: 41.38, lon: 2.17}, "馬德里": {lat: 40.41, lon: -3.70}, "維也納": {lat: 48.20, lon: 16.37} };
 
         const itinerary = {
-            1: { date: "02/17", day: "二", city: "巴黎", highlights: "啟程前往歐洲。", booking: "飛機餐", events: [
-                { time: "23:00", desc: "台北TPE → 巴黎CDG", transport: "長榮航空 BR087 / T2 / 座位 57K、57J", info: "航程約 15 小時", map: "https://maps.google.com", pdf: "https://your-cloud-link.com/ticket" }
+            1: { date: "02/17", day: "二", city: "巴黎", highlights: "23:00 台北 TPE 出發。", booking: "長榮航空 BR087", events: [
+                { time: "23:00", desc: "台北TPE → 巴黎CDG", transport: "⏏︎長榮航空BR087／T2／57K、57J", info: "約15小時", map: "https://www.google.com/maps", pdf: "https://link" }
             ]},
-            2: { date: "02/18", day: "三", city: "巴黎", highlights: "鐵塔散步＋塞納河遊船。調時差、寬鬆行程。注意保暖。", booking: "早:飛機餐 / 午:飯店附近簡單吃 / 晚:Aldehyde (米其林一星)", events: [
-                { time: "07:45", desc: "抵達 CDG T1 航廈", info: "辦理 EES、過海關、領行李", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "09:00", desc: "搭乘機場接送到飯店", transport: "計程車 (約 45-70 分鐘)", info: "開通網路、門號，買 Navigo Pass", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "10:30", desc: "抵達飯店寄放行李", transport: "步行", info: "Citadines Saint-Germain-des-Prés\n飯店附近：藝術橋、新橋、莎士比亞書店\n備註：需付城市稅 €84.50", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "12:00", desc: "觀光巴士景點", transport: "BigBus (Notre-Dame(3) → Champs-Elysées(5)) 約 30 分鐘", info: "凱旋門拍照，有免費廁所", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "13:00", desc: "觀光巴士景點", transport: "BigBus (Champs-Elysées(5) → Trocadéro(7)) 約 30 分鐘", info: "夏樂宮拍照，有免費廁所", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "17:00", desc: "Bateaux Parisiens 日落遊船", transport: "船上 (約 60 分鐘)", info: "可以早點去佔位置", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "18:00", desc: "鐵塔夜景 → 餐廳", transport: "RER C (Champ de Mars → Saint-Michel Notre-Dame) 約 10 分 + 步行 20 分", info: "可回飯店拿行李", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "19:30", desc: "Aldehyde 用餐", info: "米其林一星", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "22:00", desc: "回飯店", transport: "步行 20 分鐘", info: "超市買宵夜。初次進房請錄影檢查。", map: "https://maps.google.com", pdf: "https://link.com" }
+            2: { date: "02/18", day: "三", city: "巴黎", highlights: "鐵塔散步＋塞納河遊船。調時差、寬鬆行程。", booking: "早:飛機餐 / 午:飯店附近吃 / 晚:Aldehyde", events: [
+                { time: "07:45", desc: "抵達CDG T1航廈", info: "辦理EES、過海關、領行李", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "09:00", desc: "機場接送到飯店", transport: "⏏︎計程車 (約45-70分鐘)", info: "開通網路、門號，買Navigo Pass", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "10:30", desc: "抵達飯店/拍照/簡單吃", transport: "⏏︎步行", info: "Citadines Apart'hotel Saint-Germain-des-Prés\n景點：[ 藝術橋 ]、[ Pont Neuf ]、[ Square du Vert-Galant ]、[ 莎士比亞書店 ]\n備註：需付城市稅 €84.50", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "12:00", desc: "凱旋門拍照", transport: "⏏︎BigBus【Notre-Dame(3) → Champs-Elysées(5)】約30分鐘", info: "有免費廁所", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "13:00", desc: "夏樂宮拍照", transport: "⏏︎BigBus【Champs-Elysées(5) → Trocadéro(7)】約30分鐘", info: "有免費廁所", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "14:30", desc: "鐵塔區域散步", transport: "⏏︎步行", info: "[ Ave. de Camons ] → [ 紐約大街 ] → [ 德比利行人橋 ] → [ 大學路 ] → [ 耶拿橋 ] → [ 旋轉木馬 ] → [ 比爾哈凱姆橋 ] → [ 戰神廣場 ]", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "17:00", desc: "[ Bateaux Parisiens ] 日落遊船", transport: "⏏︎船上 (約60分鐘)", info: "可以早點去佔位置", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "18:00", desc: "鐵塔夜景 → 搭地鐵", transport: "⏏︎RER C【Champ de Mars Tour Eiffel → Saint-Michel Notre-Dame】約10分鐘 + 步行20分鐘", info: "回飯店取行李或去餐廳", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "19:30", desc: "Aldehyde 用餐", info: "米其林一星餐廳", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "22:00", desc: "回飯店/錄影檢查", transport: "⏏︎步行 (約20分鐘)", info: "買零食、宵夜。初次進房請錄影檢查物品有無損壞。", map: "https://www.google.com/maps", pdf: "https://link" }
             ]},
             3: { date: "02/19", day: "四", city: "巴黎", highlights: "聖母院、奧賽美術館。今天會吃很飽。", booking: "午:Le Vieux Bistrot / 晚:Les Antiquaires", events: [
-                { time: "07:45", desc: "巴黎聖母院內部", transport: "步行 15 分鐘 (途經 Pont Saint-Michel)", info: "Cite 島有很多廁所", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "09:00", desc: "登頂塔樓", info: "先去 1F 紀念品店。爬樓梯，怪獸走廊限 5 分鐘。", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "10:30", desc: "聖徒禮拜堂 & 古監獄", info: "使用 ursavec billet 通道免排隊。無中文語音但有手冊。", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "13:30", desc: "Le Vieux Bistrot 用餐", transport: "步行 30-45 分鐘", info: "推薦：紅酒燉牛肉、烤起司", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "17:00", desc: "前往奧賽美術館", transport: "步行 45-60 分鐘", info: "路線：盧森堡公園 → 花神/雙叟咖啡館 → 河岸舊書攤", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "18:00", desc: "奧賽美術館 (晚場)", info: "我們是第一批。21:30 商店廁所關閉。", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "21:45", desc: "Les Antiquaires 用餐", info: "推薦：鴨胸、洋蔥湯、蝸牛、鵝肝", map: "https://maps.google.com", pdf: "https://link.com" }
+                { time: "07:30", desc: "前往 [ 巴黎聖母院 ]", transport: "⏏︎步行 (約15分鐘，途經 Pont Saint-Michel)", info: "Cite島有很多廁所", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "09:00", desc: "塔樓登頂", info: "1F紀念品店領取，再爬樓梯。怪獸走廊參觀限5分鐘。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "10:30", desc: "聖徒禮拜堂 & 古監獄", info: "從 ursavec billet 通道免排隊。古監獄沒什麼人隨便進。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "13:30", desc: "Le Vieux Bistrot 用餐", transport: "⏏︎步行 (約30-45分鐘)", info: "推薦：紅酒燉牛肉、烤起司、各種火鍋", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "17:00", desc: "前往奧賽美術館", transport: "⏏︎步行 (約45-60分鐘)", info: "路線：[ 盧森堡公園 ] → [ Église Saint-Sulpice ] → [ 花神 & 雙叟 ] → [ 河岸舊書攤 ]", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "18:00", desc: "[ 奧賽美術館 ]", info: "晚場第一批。21:30 商店與廁所會先關。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "21:45", desc: "Les Antiquaires 用餐", transport: "⏏︎步行回飯店 (約15分鐘)", info: "推薦：鴨胸、洋蔥湯、蝸牛、青蛙腿", map: "https://www.google.com/maps", pdf: "https://link" }
             ]},
-            // ...其餘天數皆補足詳細交通與按鈕，因篇幅限制，以下結構同上，已整合所有站點資訊...
-            7: { date: "02/23", day: "一", city: "巴塞隆納", highlights: "跨國高鐵。巴塞隆納出站行李照X光。", booking: "晚:蘭州牛肉麵 / 城市稅 €44.00", events: [
-                { time: "07:42", desc: "TGV INOUI N9713 ➔ 巴塞隆納", transport: "火車 (6h50m) / 里昂車站出發 / 車廂 11 / 座位 140、143", info: "可線上點餐：https://reurl.cc/NNxEm9", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "14:42", desc: "抵達 Barcelona Sants 站", transport: "Uber (5-15 分鐘)", info: "前往飯店 Atenea Calabria", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "17:00", desc: "西班牙廣場 → 纜車站", transport: "公車 150 (Fira Barcelona → Av Miramar)", info: "纜車直達 Montjuïc Castle", map: "https://maps.google.com", pdf: "https://link.com" }
+            4: { date: "02/20", day: "五", city: "巴黎", highlights: "羅浮宮、歌劇院、米其林餐廳。室內活動多。", booking: "午:羅浮宮內 / 晚:Le suffren (淨漢選)", events: [
+                { time: "08:00", desc: "前往羅浮宮", transport: "⏏︎步行 (約20-30分鐘)", info: "經 Pont du Carrousel → 金字塔。注意扒手騙子。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "09:00", desc: "[ 羅浮宮 ] 參觀", info: "二樓領取語音導覽機", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "15:00", desc: "前往歌劇院", transport: "⏏︎M7 【Palais Royal → Opéra】約10分鐘", info: "[ 巴黎歌劇院 ] 參觀", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "18:00", desc: "拉法葉百貨觀景台", info: "隨後前往蒙帕納斯", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "18:30", desc: "[ 蒙帕納斯大廈 ] 觀景台", transport: "⏏︎M12 【Saint-Lazare → Montparnasse - Bienvenüe】約30分鐘", info: "看夜景", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "20:00", desc: "Le suffren 用餐", transport: "⏏︎M6 【Montparnasse → La Motte-Picquet】約15分鐘", info: "淨漢選：蝸牛、牛排、鴨腿、洋蔥湯", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "21:30", desc: "搭地鐵回飯店", transport: "⏏︎M10【La Motte-Picquet → Odéon】約20分鐘", info: "", map: "https://www.google.com/maps", pdf: "https://link" }
             ]},
-            11: { date: "02/27", day: "五", city: "馬德里", highlights: "三大博物館巡禮。", booking: "Hotel Catalonia Atocha", events: [
-                { time: "08:25", desc: "AVE 03080 ➔ 馬德里", transport: "高鐵 (2h30m) / 車廂 001 / 座位 01B、01C", info: "刀具不要放大行李箱安檢", map: "https://maps.google.com", pdf: "https://link.com" }
+            5: { date: "02/21", day: "六", city: "巴黎", highlights: "凡爾賽宮、蒙馬特。步行較多。", booking: "午:凡爾賽內 / 晚:Le Bouclard", events: [
+                { time: "07:30", desc: "前往凡爾賽宮", transport: "⏏︎RER C【Saint-Michel → Versailles Château Rive Gauche】約40分鐘", info: "出站步行20分鐘抵達", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "08:30", desc: "[ 凡爾賽宮 ] 主宮殿", info: "APP有中文導覽。直衝 [ 鏡廳 ]。PMP含主宮殿+特里亞農。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "11:30", desc: "[ 花園 ] & [ 特里亞農宮 ]", info: "小火車 €9/人。主宮殿-大運河-特里亞農-主宮殿。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "15:00", desc: "前往蒙馬特", transport: "⏏︎RER C + M12 【Solférino → Abbesses】約55分鐘", info: "[ 愛牆 ]、[ 聖心堂 ]、[ 小丘廣場 ]", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "18:30", desc: "Le Bouclard 用餐", info: "推薦：洋蔥湯、紅酒燉牛肉", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "21:00", desc: "搭計程車回飯店", transport: "⏏︎計程車 (約20-40分鐘)", info: "", map: "https://www.google.com/maps", pdf: "https://link" }
             ]},
-            14: { date: "03/02", day: "一", city: "維也納", highlights: "極限 City Walk。", booking: "Café Central 早餐", events: [
-                { time: "09:00", desc: "前往機場方案(1) / (2)", transport: "方案(1) 直達 Uber / 方案(2) 計程車到 Wien Mitte 轉 CAT", info: "CAT 班次：09:07、09:37", map: "https://maps.google.com", pdf: "https://link.com" },
-                { time: "12:05", desc: "返台 BR066", transport: "長榮航空 / T3 / 55K、55J", info: "航程約 13 小時", map: "https://maps.google.com", pdf: "https://link.com" }
-            ]}
+            6: { date: "02/22", day: "日", city: "巴黎", highlights: "跳蚤市場、CityWalk、瘋馬秀。", booking: "19:40 瘋馬秀", events: [
+                { time: "07:30", desc: "跳蚤市場", transport: "⏏︎公車 58【Pont Neuf → Porte Didot】約30分鐘", info: "[ Marché aux puces de la Porte de Vanves ]", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "10:30", desc: "[ 羅丹美術館 ]", transport: "⏏︎M13【Porte de Vanves → Varenne】約30分鐘", info: "", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "14:00", desc: "City Walk 路線", transport: "⏏︎M1【Concorde → Saint-Paul】", info: "[ 榮軍院 ] → [ 亞歷山大三世橋 ] → [ 協和廣場 ] → [ 孚日廣場 ] → [ 雨果之家 ]", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "15:30", desc: "廊街與宮殿巡禮", transport: "⏏︎M8 / 步行", info: "[ Passage Jouffroy ] → [ 全景廊街 ] → [ 薇薇安廊街 ] → [ 凡登廣場 ]", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "19:40", desc: "瘋馬秀表演", transport: "⏏︎步行回程搭 RER C", info: "收行李，巴塞隆納出站行李照X光，刀具放隨身。", map: "https://www.google.com/maps", pdf: "https://link" }
+            ]},
+            7: { date: "02/23", day: "一", city: "巴塞隆納", highlights: "鐵路遊覽、夕陽纜車。", booking: "高鐵 07:42 / 晚:蘭州牛肉麵 / 市稅 €44.00", events: [
+                { time: "06:30", desc: "里昂車站候車", transport: "⏏︎Uber (15-30分鐘)", info: "Gare de Lyon。車發前20分公布月台。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "07:42", desc: "TGV ➔ 巴塞隆納", transport: "⏏︎TGV INOUI／N9713 (約6小時50分)", info: "車廂: 11／座位: 140、143。餐車在第14節。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "14:42", desc: "抵達 Barcelona Sants", transport: "⏏︎Uber (5-15分鐘)", info: "飯店：Aparthotel Atenea Calabria。錄影檢查物品。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "16:00", desc: "西班牙廣場上山", transport: "⏏︎公車 150 【Fira Barcelona → Av Miramar】約15分鐘", info: "途經米羅公園、女人和鳥", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "17:00", desc: "蒙特惠奇纜車", transport: "⏏︎纜車 (約10分鐘)", info: "[ Montjuïc Castle ]。18:00 前搭回程纜車。", map: "https://www.google.com/maps", pdf: "https://link" },
+                { time: "20:00", desc: "洗衣服 & 晚餐", info: "[ Dash&Dry ] 洗衣。晚餐：一品兰州牛肉面。", map: "https://www.google.com/maps", pdf: "https://link" }
+            ]},
+            // 待續 Day 8 - Day 15...
         };
 
-        // --- 核心顯示邏輯 (不更動介面) ---
+        // --- 核心邏輯 ---
         let currentDay = 2;
-
         async function fetchWeather(city) {
             const coords = cityCoords[city] || cityCoords["巴黎"];
             const tempEl = document.getElementById('temp-display');
@@ -103,10 +123,7 @@
             } catch (e) { tempEl.innerText = "--°C"; }
         }
 
-        function init() {
-            renderDates();
-            showDay(currentDay);
-        }
+        function init() { renderDates(); showDay(currentDay); }
 
         function renderDates() {
             const selector = document.getElementById('date-selector');
@@ -122,11 +139,8 @@
         }
 
         function showDay(day) {
-            currentDay = day;
-            renderDates();
-            const data = itinerary[day];
-            if (!data) return;
-
+            currentDay = day; renderDates();
+            const data = itinerary[day]; if (!data) return;
             document.getElementById('overview-title').innerText = `${data.city} · Day ${day}`;
             document.getElementById('overview-highlights').innerText = data.highlights;
             document.getElementById('overview-booking').innerText = data.booking;
@@ -134,7 +148,6 @@
 
             const timeline = document.getElementById('daily-timeline');
             timeline.innerHTML = `<div class="ml-14 mb-4"><p class="text-[11px] font-bold text-blue-500 uppercase tracking-widest">${data.date} (${data.day})</p></div>`;
-            
             data.events.forEach(ev => {
                 const card = document.createElement('div');
                 card.className = "relative pl-14 pr-2 mb-6";
@@ -146,21 +159,19 @@
                                 <span class="bg-blue-50 text-blue-600 text-[14px] font-black px-3 py-1.5 rounded-xl min-w-[75px] text-center">${ev.time}</span>
                                 <h3 class="font-bold text-gray-800 text-[15px] leading-tight flex-1">${ev.desc}</h3>
                             </div>
-                            ${ev.transport ? `<div class="flex items-start gap-2 bg-blue-50 px-3 py-2 rounded-xl text-blue-700 text-[11px] font-bold"><i data-lucide="tram-front" class="w-4 h-4 mt-0.5"></i><span class="wrap-text">${ev.transport}</span></div>` : ''}
-                            ${ev.info ? `<p class="text-[12px] text-gray-500 px-1 wrap-text font-medium leading-relaxed">${ev.info}</p>` : ''}
+                            ${ev.transport ? `<div class="flex items-start gap-2 bg-blue-50/50 px-3 py-2 rounded-xl border border-blue-100"><i data-lucide="car" class="w-3.5 h-3.5 text-blue-500 mt-0.5"></i><span class="text-[11px] text-blue-700 font-bold wrap-text">${ev.transport}</span></div>` : ''}
+                            ${ev.info ? `<p class="text-[12px] text-gray-500 leading-relaxed wrap-text px-1 font-medium">${ev.info}</p>` : ''}
                             <div class="flex gap-2 mt-1">
-                                ${ev.map ? `<a href="${ev.map}" target="_blank" class="flex items-center gap-1.5 bg-gray-50 text-gray-600 text-[11px] font-bold px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"><i data-lucide="navigation" class="w-3.5 h-3.5 text-blue-500"></i>導航</a>` : ''}
-                                ${ev.pdf ? `<a href="${ev.pdf}" target="_blank" class="flex items-center gap-1.5 bg-gray-50 text-gray-600 text-[11px] font-bold px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"><i data-lucide="file-text" class="w-3.5 h-3.5 text-red-500"></i>PDF</a>` : ''}
+                                ${ev.map ? `<a href="${ev.map}" target="_blank" class="flex items-center gap-1.5 bg-gray-50 text-gray-600 text-[11px] font-bold px-3 py-2 rounded-lg border border-gray-200"><i data-lucide="navigation" class="w-3.5 h-3.5 text-blue-500"></i>導航</a>` : ''}
+                                ${ev.pdf ? `<a href="${ev.pdf}" target="_blank" class="flex items-center gap-1.5 bg-gray-50 text-gray-600 text-[11px] font-bold px-3 py-2 rounded-lg border border-gray-200"><i data-lucide="file-text" class="w-3.5 h-3.5 text-red-500"></i>PDF</a>` : ''}
                             </div>
                         </div>
                     </div>
                 `;
                 timeline.appendChild(card);
             });
-            lucide.createIcons();
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            lucide.createIcons(); window.scrollTo({top: 0, behavior: 'smooth'});
         }
-
         window.onload = init;
     </script>
 </body>

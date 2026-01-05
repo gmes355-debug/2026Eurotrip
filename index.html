@@ -124,7 +124,7 @@
                                 <span class="bg-blue-50 text-blue-600 text-[14px] font-black px-3 py-1.5 rounded-xl min-w-[75px] text-center">${ev.time}</span>
                                 <h3 class="font-bold text-gray-800 text-[15px] leading-tight flex-1">${ev.desc}</h3>
                             </div>
-                            ${ev.transport ? `<div class="flex items-start gap-2 bg-blue-50/50 px-3 py-2 rounded-xl border border-blue-100"><i data-lucide="car" class="w-3.5 h-3.5 text-blue-500 mt-0.5"></i><span class="text-[11px] text-blue-700 font-bold wrap-text">${ev.transport.replace('', '')}</span></div>` : ''}
+                            ${ev.transport ? `<div class="flex items-start gap-2 bg-blue-50/50 px-3 py-2 rounded-xl border border-blue-100"><i data-lucide="car" class="w-3.5 h-3.5 text-blue-500 mt-0.5"></i><span class="text-[11px] text-blue-700 font-bold wrap-text">${ev.transport.replace('⏏︎', '')}</span></div>` : ''}
                             ${ev.info ? `<p class="text-[12px] text-gray-500 px-1 wrap-text font-medium leading-relaxed">${ev.info}</p>` : ''}
                             <div class="flex gap-2 mt-1">
                                 ${ev.map ? `<a href="${ev.map}" target="_blank" class="flex items-center gap-1.5 bg-gray-50 text-gray-600 text-[11px] font-bold px-3 py-2 rounded-lg border border-gray-200"><i data-lucide="navigation" class="w-3.5 h-3.5 text-blue-500"></i>導航</a>` : ''}

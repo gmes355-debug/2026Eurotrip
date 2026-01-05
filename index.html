@@ -53,7 +53,7 @@
         const cityCoords = { "巴黎": {lat: 48.85, lon: 2.35}, "巴塞隆納": {lat: 41.38, lon: 2.17}, "馬德里": {lat: 40.41, lon: -3.70}, "維也納": {lat: 48.20, lon: 16.37} };
 
         // 核心顯示邏輯
-        let currentDay = 2;
+        let currentDay = 1;
 
         async function fetchWeather(city) {
             const coords = cityCoords[city] || cityCoords["巴黎"];
@@ -340,7 +340,6 @@
         ]
     }
 };
-        };
 
         window.onload = init;
         function init() { renderDates(); showDay(currentDay); }

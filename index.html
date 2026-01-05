@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        /* 提升飽和度與對比度：微調莫蘭迪配色系統 */
         :root {
             --morandi-bg: #EBEAE4;      
             --morandi-blue: #7D92A1;    
@@ -14,83 +15,258 @@
             --morandi-text: #3D444C;    
             --morandi-card: #DEDDD7;    
             --morandi-dark: #5A6B78;    
-            --card-border: rgba(151, 163, 152, 0.4);
+            --card-border: rgba(151, 163, 152, 0.4); /* 外框線樣式和時間軸線一致 (morandi-green + opacity) */
         }
+
         body { 
             font-family: -apple-system, "SF Pro Display", "Noto Sans TC", sans-serif; 
             background-color: var(--morandi-bg); 
             color: var(--morandi-text);
-            -webkit-font-smoothing: antialiased;
         }
-        #date-selector { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* 橫向工具列容器與捲動優化 */
+        header.sticky {
+            background-color: var(--morandi-bg);
+            box-shadow: none; 
+            border-bottom: none;
+        }
+
+        #date-selector {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            cursor: grab;
+            user-select: none;
+        }
+
+        #date-selector:active {
+            cursor: grabbing;
+        }
+
+        /* 電腦版顯示細微滾動條方便視覺引導 */
+        @media (min-width: 1024px) {
+            #date-selector::-webkit-scrollbar {
+                display: block;
+                height: 5px;
+            }
+            #date-selector::-webkit-scrollbar-thumb {
+                background: rgba(151, 163, 152, 0.3);
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .hide-scrollbar::-webkit-scrollbar { display: none; }
+            #date-selector { -ms-overflow-style: none; scrollbar-width: none; }
+        }
+
+        /* 橫向工具列按鈕 */
         .date-card { 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            background-color: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            min-width: 85px; height: 85px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            aspect-ratio: 1 / 1;
+            line-height: 1.3; 
         }
         .date-card.active { 
-            background-color: var(--morandi-blue) !important; 
-            color: white !important; 
-            box-shadow: 0 8px 20px rgba(125, 146, 161, 0.3); 
+            background-color: var(--morandi-blue); 
+            color: white; 
+            box-shadow: 0 8px 15px rgba(125, 146, 161, 0.4); 
             transform: translateY(-2px);
+            border-color: transparent;
         }
-        .date-card.active span, .date-card.active div { color: white !important; }
-        .slash-container { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; height: 30px; }
-        .slash-line { width: 1.5px; height: 24px; background-color: currentColor; opacity: 0.4; transform: rotate(20deg); margin: 0 8px; }
+        
         .timeline-line::before { 
             content: ''; position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; 
-            background: var(--morandi-green); opacity: 0.3; 
+            background: var(--morandi-green); opacity: 0.4; 
         }
         .wrap-text { word-break: break-all; white-space: pre-line; }
-        .master-card-styled { background-color: var(--morandi-card); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04); }
-        .event-card { background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid var(--card-border); }
+
+        /* Today's Highlight 卡片 */
+        .master-card-styled {
+            background-color: var(--morandi-card);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 行程卡片：框線樣式同步時間軸，陰影同步 master-card */
+        .event-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .event-card-desc { font-size: 16.5px; } 
+        .event-card-time { font-size: 14px; }
+        
+        /* 交通資訊字號大於 Info */
+        .transport-text { font-size: 13.5px; }
+        .info-text { font-size: 12px; }
     </style>
 </head>
 <body class="pb-10">
-    <header class="sticky top-0 z-50 bg-[#EBEAE4]/80 backdrop-blur-md">
-        <div id="date-selector" class="flex overflow-x-auto px-5 py-6 space-x-4 hide-scrollbar"></div>
+
+    <header class="sticky top-0 z-50">
+        <div id="date-selector" class="flex overflow-x-auto px-5 py-5 space-x-3 hide-scrollbar"></div>
     </header>
 
     <main class="px-4 mt-2">
         <div id="master-card" class="mb-8 master-card-styled rounded-[2.5rem] p-7 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/30 rounded-full blur-3xl"></div>
+            
             <div class="flex justify-between items-start relative z-10">
                 <div>
-                    <span class="text-[10px] bg-slate-700 text-white px-2 py-0.5 rounded font-bold tracking-widest uppercase">Overview</span>
+                    <span class="text-[10px] bg-slate-700 text-white px-2.5 py-1 rounded-md font-black tracking-widest uppercase shadow-sm">Today's Highlight</span>
                     <h2 id="overview-title" class="text-2xl font-black mt-3 text-slate-800 tracking-tight">載入中...</h2>
                 </div>
-                <div id="weather-box" class="flex flex-col items-end">
-                    <span id="temp-display" class="text-xl font-black text-slate-700">--°C</span>
-                    <i id="weather-icon" data-lucide="cloud-sun" class="w-5 h-5 text-slate-500"></i>
+                <div id="weather-box" class="flex items-center gap-2 px-2 py-1 text-slate-700">
+                    <span id="temp-display" class="text-base font-black">--°C</span>
+                    <i id="weather-icon" data-lucide="cloud-sun" class="w-6 h-6 text-slate-600"></i>
                 </div>
             </div>
-            <p id="overview-highlights" class="text-[15px] text-slate-700 font-bold mt-4 leading-relaxed"></p>
-            <div id="booking-section" class="mt-6 pt-6 border-t border-slate-400/20">
+
+            <p id="overview-highlights" class="text-[16px] text-slate-700 font-bold mt-4 leading-relaxed relative z-10"></p>
+
+            <div id="booking-section" class="mt-6 pt-6 border-t border-slate-500/10 relative z-10">
                 <div class="flex items-center gap-2 mb-3 text-slate-500">
-                    <i data-lucide="info" class="w-4 h-4"></i>
-                    <span class="text-[11px] font-black uppercase tracking-wider">Stay & Transport</span>
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span class="text-[12px] font-black uppercase tracking-wider italic">Booking & Stay</span>
                 </div>
-                <p id="overview-booking" class="text-[14px] text-slate-600 font-medium mb-4 wrap-text"></p>
+                <p id="overview-booking" class="text-[14px] text-slate-600 font-medium leading-relaxed mb-4 wrap-text"></p>
                 <div id="booking-map-link"></div>
             </div>
         </div>
+
         <div id="daily-timeline" class="relative timeline-line space-y-6"></div>
     </main>
 
     <script>
-    const cityCoords = { 
-        "巴黎": { lat: 48.85, lon: 2.35 }, 
-        "巴塞隆納": { lat: 41.38, lon: 2.17 }, 
-        "馬德里": { lat: 40.41, lon: -3.70 }, 
-        "維也納": { lat: 48.20, lon: 16.37 },
-        "台北": { lat: 25.03, lon: 121.56 }
-    };
-    
-    let currentDay = 1;
+        const cityCoords = { "巴黎": {lat: 48.85, lon: 2.35}, "巴塞隆納": {lat: 41.38, lon: 2.17}, "馬德里": {lat: 40.41, lon: -3.70}, "維也納": {lat: 48.20, lon: 16.37} };
 
-    const itinerary = {
+        let currentDay = 1;
+
+        async function fetchWeather(city) {
+            const coords = cityCoords[city] || cityCoords["巴黎"];
+            const tempEl = document.getElementById('temp-display');
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true`);
+                const data = await res.json();
+                tempEl.innerText = `${Math.round(data.current_weather.temperature)}°C`;
+            } catch (e) { tempEl.innerText = "--°C"; }
+        }
+
+        function renderDates() {
+            const selector = document.getElementById('date-selector');
+            selector.innerHTML = '';
+
+            Object.keys(itinerary).forEach(day => {
+                const item = itinerary[day];
+                const btn = document.createElement('button');
+                btn.className = `date-card flex-shrink-0 w-24 h-24 rounded-[30px] flex flex-col items-center justify-center transition-all px-1 ${day == currentDay ? 'active' : 'text-slate-600'}`;
+                btn.onclick = () => showDay(day);
+                btn.innerHTML = `
+                    <span class="text-[12px] font-black opacity-70 uppercase">D${day}</span>
+                    <span class="text-[18px] font-black tracking-tighter">${item.date.replace(/\//g, '.')}</span>
+                    <span class="text-[13px] font-bold opacity-90">${item.day}</span>
+                `;
+                selector.appendChild(btn);
+            });
+        }
+
+        function showDay(day) {
+            currentDay = day;
+            renderDates();
+            
+            const data = itinerary[day];
+            if (!data) return;
+
+            document.getElementById('overview-title').innerText = `${data.city} · Day ${day}`;
+            document.getElementById('overview-highlights').innerText = data.highlights;
+
+            const bookingText = document.getElementById('overview-booking');
+            const bookingMapBtn = document.getElementById('booking-map-link');
+            const bookingSection = document.getElementById('booking-section');
+
+            if (data.booking) {
+                bookingSection.style.display = 'block';
+                bookingText.innerText = data.booking;
+
+                if (data.hotelMap) {
+                    bookingMapBtn.innerHTML = `
+                        <a href="${data.hotelMap}" target="_blank" class="inline-flex items-center gap-2 bg-white/70 text-slate-700 text-[11px] font-black px-4 py-2 rounded-xl shadow-sm border-none transition-transform active:scale-95">
+                            <i data-lucide="navigation" class="w-3.5 h-3.5"></i> 定位導航
+                        </a>`;
+                } else {
+                    bookingMapBtn.innerHTML = '';
+                }
+            } else {
+                bookingSection.style.display = 'none';
+            }
+
+            fetchWeather(data.city);
+
+            const timeline = document.getElementById('daily-timeline');
+            timeline.innerHTML = '';
+
+            data.events.forEach(ev => {
+                const card = document.createElement('div');
+                card.className = "relative pl-14 pr-2 mb-6";
+                card.innerHTML = `
+                    <div class="absolute left-[20px] top-[28px] w-[10px] h-[10px] rounded-full bg-slate-500 ring-4 ring-white z-10 shadow-sm"></div>
+                    <div class="event-card rounded-[2.2rem] p-6">
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-slate-200 text-slate-700 event-card-time font-black px-3 py-1.5 rounded-xl min-w-[75px] text-center">${ev.time}</span>
+                                <h3 class="font-bold text-slate-800 event-card-desc leading-tight flex-1">${ev.desc}</h3>
+                            </div>
+                            ${ev.transport ? `
+                                <div class="flex items-start gap-2 bg-slate-100/80 px-3 py-2.5 rounded-xl border border-slate-200">
+                                    <i data-lucide="bus" class="w-4 h-4 text-slate-500 mt-0.5"></i>
+                                    <span class="transport-text text-slate-600 font-bold wrap-text leading-tight">${ev.transport.replace('⏏︎', '')}</span>
+                                </div>` : ''}
+                            ${ev.info ? `<p class="info-text text-slate-500 px-1 wrap-text font-medium leading-relaxed">${ev.info}</p>` : ''}
+                            <div class="flex gap-2 mt-1">
+                                ${ev.map ? `<a href="${ev.map}" target="_blank" class="flex items-center gap-1.5 bg-white text-slate-600 text-[12px] font-bold px-3 py-2 rounded-lg border border-slate-200 shadow-sm"><i data-lucide="map" class="w-4 h-4 text-slate-400"></i>導航</a>` : ''}
+                                ${ev.pdf ? `<a href="${ev.pdf}" target="_blank" class="flex items-center gap-1.5 bg-white text-slate-600 text-[12px] font-bold px-3 py-2 rounded-lg border border-slate-200 shadow-sm"><i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i>附件</a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                timeline.appendChild(card);
+            });
+
+            lucide.createIcons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 電腦端滑鼠拖拽捲動邏輯
+        const scrollContainer = document.getElementById('date-selector');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+        scrollContainer.addEventListener('mouseleave', () => { isDown = false; });
+        scrollContainer.addEventListener('mouseup', () => { isDown = false; });
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; 
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // 支援滾輪橫向捲動
+        scrollContainer.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                scrollContainer.scrollLeft += e.deltaY;
+            }
+        });
+        const itinerary = {
     1: { 
         date: "02/17", day: "二", city: "巴黎", 
         highlights: "23:00 台北 TPE 出發，開啟歐洲之旅。", 
@@ -289,89 +465,12 @@
         hotelMap: "", 
         events: [
             { time: "06:40", desc: "抵達桃園機場 T2", info: "領取行李、通關。15 天歐洲之旅圓滿結束！", map: "https://www.google.com/maps/search/Restaurant+Aldehyde+Paris3", pdf: "https://link" }
-        ]}
-    };
-    async function fetchWeather(city) {
-        const coords = cityCoords[city] || cityCoords["巴黎"];
-        const tempEl = document.getElementById('temp-display');
-        try {
-            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true`);
-            const data = await res.json();
-            tempEl.innerText = `${Math.round(data.current_weather.temperature)}°C`;
-        } catch (e) { tempEl.innerText = "--°C"; }
+        ]
     }
+};
 
-    function getEnDay(zhDay) {
-        // 修正：這裡要對應你 itinerary 裡的 "二", "三" 而不是 "週二"
-        const map = { '一': 'Mon', '二': 'Tue', '三': 'Wed', '四': 'Thu', '五': 'Fri', '六': 'Sat', '日': 'Sun' };
-        return map[zhDay] || zhDay;
-    }
-
-    function renderDates() {
-        const selector = document.getElementById('date-selector');
-    selector.innerHTML = '';
-    Object.keys(itinerary).forEach(day => {
-        const item = itinerary[day];
-        const [month, date] = item.date.split('/');
-        const btn = document.createElement('button');
-        
-        // 修正這裡：如果是 active 就不要帶上 text-slate-600
-        const isActive = day == currentDay;
-        btn.className = `date-card flex-shrink-0 w-24 h-24 rounded-[30px] transition-all ${isActive ? 'active' : 'text-slate-600'}`;
-        
-        btn.onclick = () => showDay(day);
-        btn.innerHTML = `
-            <span class="text-[11px] font-black opacity-70 tracking-widest">D${day}</span>
-            <div class="slash-container">
-                <span class="text-[16px] font-black">${month}</span>
-                <div class="slash-line"></div>
-                <span class="text-[20px] font-black">${date}</span>
-            </div>
-            <span class="text-[13px] font-bold opacity-90">${getEnDay(item.day)}</span>
-        `;
-        selector.appendChild(btn);
-    });
-}
-
-    function showDay(day) {
-        currentDay = day;
-        renderDates();
-        const data = itinerary[day];
-        if (!data) return;
-
-        document.getElementById('overview-title').innerText = `${data.city} · Day ${day}`;
-        document.getElementById('overview-highlights').innerText = data.highlights;
-        document.getElementById('overview-booking').innerText = data.booking;
-        
-        const bookingMap = document.getElementById('booking-map-link');
-        bookingMap.innerHTML = data.hotelMap ? 
-            `<a href="${data.hotelMap}" target="_blank" class="inline-flex items-center gap-2 bg-slate-800 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-lg">
-                <i data-lucide="map"></i> Open Hotel Map
-            </a>` : '';
-
-        fetchWeather(data.city);
-
-        const timeline = document.getElementById('daily-timeline');
-        timeline.innerHTML = '';
-        data.events.forEach(event => {
-            const eventEl = document.createElement('div');
-            eventEl.className = 'relative pl-12 pr-2';
-            eventEl.innerHTML = `
-                <div class="absolute left-[18px] top-2 w-3.5 h-3.5 bg-white border-2 border-[#97A398] rounded-full z-10"></div>
-    <div class="event-card rounded-3xl p-5 relative overflow-hidden">
-        <div class="flex justify-between items-start mb-2">
-            <span class="text-sm font-black text-slate-400 tracking-tighter">${event.time}</span>
-        </div>
-        <h3 class="text-lg font-black text-slate-800 mb-1">${event.desc}</h3>
-        <p class="text-[13px] text-slate-500 font-medium leading-relaxed">${event.info || ''}</p>
-    </div>
-`;
-timeline.appendChild(eventEl);
-        });
-        lucide.createIcons();
-    }
-
-    window.onload = () => showDay(1);
+        window.onload = init;
+        function init() { renderDates(); showDay(currentDay); }
     </script>
 </body>
 </html>

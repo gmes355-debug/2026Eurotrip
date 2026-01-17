@@ -161,7 +161,7 @@
         // 3. 星期轉換對照表
         const weekMap = { "一": "Mon", "二": "Tue", "三": "Wed", "四": "Thu", "五": "Fri", "六": "Sat", "日": "Sun" };
 
-        let currentDay = 1;
+        let currentDay = Number(localStorage.getItem("currentDay")) || 1;
 
         async function fetchWeather(city) {
             const coords = cityCoords[city] || cityCoords["巴黎"];
@@ -200,6 +200,7 @@
 
         function showDay(day) {
             currentDay = day;
+            localStorage.setItem("currentDay", day);
             renderDates();
             
             const data = itinerary[day];
